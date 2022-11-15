@@ -1,0 +1,9 @@
+oauth2clientsoundfile
+pymediainfo
+cv2
+moviepy
+PIL
+numpy
+matplotlib
+pandas
+google-cloud-texttospeech

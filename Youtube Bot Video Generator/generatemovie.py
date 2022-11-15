@@ -1,12 +1,12 @@
 from moviepy.editor import *
 import settings
 import soundfile as sf
-import pickle
+# import pickle
 from pydub import AudioSegment
 from pymediainfo import MediaInfo
 from time import sleep
-from copy import deepcopy
-import gc
+# from copy import deepcopy
+# import gc
 
 
 class Movie():

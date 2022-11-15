@@ -48,12 +48,12 @@ def init():
     thread = Thread(target=updateScripts)
     thread.start()
 
-    #youtubequeue.initQueue()
-    #socketclient.connectToServer()
-    #print(checkValueExists("scriptid", "t5_2qh1i"))
-    #updateScriptStatus("EDITING", "t5_2qh1i")
-    #print(getVideoCountFromStatus("RAW"))
-    #print(getRowCount("scripts"))x
+    # youtubequeue.initQueue()
+    # socketclient.connectToServer()
+    # print(checkValueExists("scriptid", "t5_2qh1i"))
+    # updateScriptStatus("EDITING", "t5_2qh1i")
+    # print(getVideoCountFromStatus("RAW"))
+    # print(getRowCount("scripts"))
 
 def exit_handler():
     print("Safe Exit")

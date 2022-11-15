@@ -1,21 +1,24 @@
 import os
+
 import settings
+
 settings.generateConfigFile()
-import soundfile as sf
-from pydub import AudioSegment
-import generatorclient
-from time import sleep
-from subprocess import *
-import videouploader
-from threading import Thread
-import pickle
 import datetime
-from datetime import timedelta
-from PIL import Image
-import subprocess
-import videoscript
+import pickle
 import random
+import subprocess
+from datetime import timedelta
+from subprocess import *
+from threading import Thread
+from time import sleep
+
+import generatorclient
+import soundfile as sf
+import videoscript
+import videouploader
 from moviepy.editor import *
+from PIL import Image
+from pydub import AudioSegment
 
 # 18:00 19:00 20:00 23:00 00:00 01:00
 
@@ -75,15 +78,15 @@ def parseScripts():
         print("VIDEO GENERATOR no scripts to parse")
 
 
-def uploadVids():
-    pass
-    """
-    if renderedVids:
-        for vid in renderedVids:
-            vid.generateMovie()
-        renderedVids.clear()
-        loadVideoScripts()
-    """
+# def uploadVids():
+#     pass
+#     """
+#     if renderedVids:
+#         for vid in renderedVids:
+#             vid.generateMovie()
+#         renderedVids.clear()
+#         loadVideoScripts()
+#     """
 
 
 def canUpload():
@@ -201,42 +204,42 @@ if __name__ == "__main__":
 
     begin = True
 
-    if not settings.exportOffline:
-        videouploader.get_credentials()
-    else:
-        print("Video Generator launching in export offline mode")
+    # if not settings.exportOffline:
+    #     videouploader.get_credentials()
+    # else:
+    #     print("Video Generator launching in export offline mode")
 
-    if not settings.noSpeech:
-        if settings.use_balcon and settings.use_google_tts:
-            print("You have selected to use both google tts and balcon tts! Please only select one in the config file!")
-            begin = False
+    # if not settings.noSpeech:
+    #     if settings.use_balcon and settings.use_google_tts:
+    #         print("You have selected to use both google tts and balcon tts! Please only select one in the config file!")
+    #         begin = False
 
-        if not settings.use_balcon and not settings.use_google_tts:
-            print("You have not selected any tts options in the config file!"
-                  " Please set either google tts or balcon tts to true! Not both!")
-            begin = False
+    #     if not settings.use_balcon and not settings.use_google_tts:
+    #         print("You have not selected any tts options in the config file!"
+    #               " Please set either google tts or balcon tts to true! Not both!")
+    #         begin = False
 
-        if settings.use_balcon:
-            command = "%s -t \"%s\" -n %s" % (settings.balcon_location,
-                                                    "Balcon Voice Success", settings.balcon_voice)
+    #     if settings.use_balcon:
+    #         command = "%s -t \"%s\" -n %s" % (settings.balcon_location,
+    #                                                 "Balcon Voice Success", settings.balcon_voice)
 
-            process = subprocess.call(command, shell=True)
-            if process != 0:
-                print("Balcon not found. This will work when the following command works in your commandline: %s" % ("%s -t \"%s\" -n %s" % (settings.balcon_location,
-                                                    "Balcon Voice Test", settings.balcon_voice)))
-                begin = False
+    #         process = subprocess.call(command, shell=True)
+    #         if process != 0:
+    #             print("Balcon not found. This will work when the following command works in your commandline: %s" % ("%s -t \"%s\" -n %s" % (settings.balcon_location,
+    #                                                 "Balcon Voice Test", settings.balcon_voice)))
+    #             begin = False
 
-    if settings.use_overlay:
-        if not os.path.exists(f"{settings.overlayPath}/{settings.overlay_image}"):
-            print(f"Overlay image {settings.overlayPath}/{settings.overlay_image} does not exist! Fix the file name in config.ini or set use_overlay=False")
+    # if settings.use_overlay:
+    #     if not os.path.exists(f"{settings.overlayPath}/{settings.overlay_image}"):
+    #         print(f"Overlay image {settings.overlayPath}/{settings.overlay_image} does not exist! Fix the file name in config.ini or set use_overlay=False")
 
-            begin = False
-        else:
-            im = Image.open(f"{settings.overlayPath}/{settings.overlay_image}")
-            width, height = im.size
-            if width != 1920 or height != 1080:
-                print(f"Overlay image {settings.overlayPath}/{settings.overlay_image} not of correct dimensions ({width},{height})! Needs to be 1920x1080")
-                begin = False
+    #         begin = False
+    #     else:
+    #         im = Image.open(f"{settings.overlayPath}/{settings.overlay_image}")
+    #         width, height = im.size
+    #         if width != 1920 or height != 1080:
+    #             print(f"Overlay image {settings.overlayPath}/{settings.overlay_image} not of correct dimensions ({width},{height})! Needs to be 1920x1080")
+    #             begin = False
 
     if begin:
         initQueue()

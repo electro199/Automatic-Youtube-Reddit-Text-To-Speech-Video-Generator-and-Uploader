@@ -1,25 +1,25 @@
 
-import socket
-from time import sleep
-import sys
-import pickle
-from threading import Thread
-import rawscriptsmenu
-import hashlib
-import videoscriptcore
 import datetime
-import publishmenu
+import hashlib
+import pickle
+import socket
+import sys
+from threading import Thread
+from time import sleep
+
 import pandas as pd
+import publishmenu
+import rawscriptsmenu
 import settings
+import videoscriptcore
+
 settings.generateConfigFile()
-from PyQt5 import QtWidgets
 import configparser
+
+from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import *
-from PyQt5 import QtGui
-from PyQt5 import QtCore
-from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5 import uic
+from PyQt5.QtWidgets import *
 
 # Create a TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -89,7 +89,7 @@ def connectToServer():
         sock.connect(server_address)
         sock.settimeout(None)
     except ConnectionRefusedError:
-        input("Could not connect to server. Press enter to continue")
+        input("Could not connect to server. Press enter to exit")
         exit()
     thread = Thread(target=serverResponseListen)
     thread.start()
